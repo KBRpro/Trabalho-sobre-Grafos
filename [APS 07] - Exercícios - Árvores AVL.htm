@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html dir="ltr" xml:lang="pt-br" class="yui3-js-enabled" lang="pt-br"><head>
+    <title>[APS 07] - Exercícios - Árvores AVL</title>
+    <link rel="shortcut icon" href="https://moodle.pb.utfpr.edu.br/theme/image.php/more/theme/1552921938/favicon">
+    <meta name="apple-itunes-app" content="app-id=633359593, app-argument=https://moodle.pb.utfpr.edu.br/mod/quiz/review.php?attempt=29332&amp;cmid=39706"><link rel="manifest" href="https://moodle.pb.utfpr.edu.br/admin/tool/mobile/mobile.webmanifest.php"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content="moodle, [APS 07] - Exercícios - Árvores AVL">
+<link rel="stylesheet" type="text/css" href="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/yui_combo.css"><script async="" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/analytics.js"></script><script charset="utf-8" id="yui_3_17_2_1_1562981429799_8" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/yui_combo_004.php" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1562981429799_18" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/flags.js" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1562981429799_78" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/qengine.js" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1562981429799_79" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/module.js" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1562981429799_80" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/yui_combo.php" async=""></script><link charset="utf-8" rel="stylesheet" id="yui_3_17_2_1_1562981429799_85" href="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/yui_combo_002.css"><script charset="utf-8" id="yui_3_17_2_1_1562981429799_86" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/yui_combo_005.php" async=""></script><script charset="utf-8" id="yui_3_17_2_1_1562981429799_102" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/yui_combo_003.php" async=""></script><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/all.css">
+<script type="text/javascript">
+//<![CDATA[
+var M = {}; M.yui = {};
+M.pageloadstarttime = new Date();
+M.cfg = {"wwwroot":"https:\/\/moodle.pb.utfpr.edu.br","sesskey":"vQKlqcaEE4","themerev":"1552921938","slasharguments":1,"theme":"more","iconsystemmodule":"core\/icon_system_standard","jsrev":"1552921938","admin":"admin","svgicons":true,"usertimezone":"Am\u00e9rica\/S\u00e3o_Paulo","contextid":61691};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
+if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
+YUI_config = {"debug":false,"base":"https:\/\/moodle.pb.utfpr.edu.br\/lib\/yuilib\/3.17.2\/","comboBase":"https:\/\/moodle.pb.utfpr.edu.br\/theme\/yui_combo.php?","combine":true,"filter":null,"insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/moodle.pb.utfpr.edu.br\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/moodle.pb.utfpr.edu.br\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/moodle.pb.utfpr.edu.br\/theme\/yui_combo.php?m\/1552921938\/","combine":true,"comboBase":"https:\/\/moodle.pb.utfpr.edu.br\/theme\/yui_combo.php?","ext":false,"root":"m\/1552921938\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":null,"modules":{"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-checknet":{"requires":["base-base","moodle-core-notification-alert","io-base"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-tooltip":{"requires":["base","node","io-base","moodle-core-notification-dialogue","json-parse","widget-position","widget-position-align","event-outside","cache-base"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-popuphelp":{"requires":["moodle-core-tooltip"]},"moodle-core-dock":{"requires":["base","node","event-custom","event-mouseenter","event-resize","escape","moodle-core-dock-loader","moodle-core-event"]},"moodle-core-dock-loader":{"requires":["escape"]},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core-formchangechecker":{"requires":["base","event-focus","moodle-core-event"]},"moodle-core-languninstallconfirm":{"requires":["base","node","moodle-core-notification-confirm","moodle-core-notification-alert"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-confirmcancel":{"requires":["node","node-event-simulate","moodle-core-notification-confirm"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-course-formatchooser":{"requires":["base","node","node-event-simulate"]},"moodle-course-modchooser":{"requires":["moodle-core-chooserdialogue","moodle-course-coursebase"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-showadvanced":{"requires":["node","base","selector-css3"]},"moodle-form-passwordunmask":{"requires":[]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-question-qbankmanager":{"requires":["node","selector-css3"]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_forum-subscriptiontoggle":{"requires":["base-base","io-base"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_quiz-repaginate":{"requires":["base","event","node","io","moodle-core-notification-dialogue"]},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-core-notification-confirm","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_grader-gradereporttable":{"requires":["base","node","event","handlebars","overlay","event-hover"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-tool_capability-search":{"requires":["base","node"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-tool_monitor-dropdown":{"requires":["base","event","node"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_html-beautify":{},"moodle-atto_html-codemirror":{"requires":["moodle-atto_html-codemirror-skin"]},"moodle-atto_html-button":{"requires":["promise","moodle-editor_atto-plugin","moodle-atto_html-beautify","moodle-atto_html-codemirror","event-valuechange"]},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/moodle.pb.utfpr.edu.br\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/moodle.pb.utfpr.edu.br\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1552921938\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/moodle.pb.utfpr.edu.br\/lib\/javascript.php\/1552921938\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/moodle.pb.utfpr.edu.br\/lib\/javascript.php\/1552921938\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]},"core_question_flags":{"name":"core_question_flags","fullpath":"https:\/\/moodle.pb.utfpr.edu.br\/lib\/javascript.php\/1552921938\/question\/flags.js","requires":["base","dom","event-delegate","io-base"]},"core_question_engine":{"name":"core_question_engine","fullpath":"https:\/\/moodle.pb.utfpr.edu.br\/lib\/javascript.php\/1552921938\/question\/qengine.js","requires":["node","event"]},"mod_quiz":{"name":"mod_quiz","fullpath":"https:\/\/moodle.pb.utfpr.edu.br\/lib\/javascript.php\/1552921938\/mod\/quiz\/module.js","requires":["base","dom","event-delegate","event-key","core_question_engine","moodle-core-formchangechecker"]}}};
+M.yui.loader = {modules: {}};
+
+//]]>
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51497737-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="core/first" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/first.js"></script><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/jquery-3.js"></script></head>
+
+<body id="page-mod-quiz-review" class="format-topics  path-mod path-mod-quiz gecko dir-ltr lang-pt_br yui-skin-sam yui3-skin-sam moodle-pb-utfpr-edu-br pagelayout-incourse course-159 context-61691 cmid-39706 category-34 has-region-side-pre used-region-side-pre has-region-side-post empty-region-side-post side-pre-only jsenabled"><div id="MathJax_Message" style="display: none;"></div>
+
+<div class="skiplinks">
+    <a href="#maincontent" class="skip">Ir para o conteúdo principal</a>
+</div><script type="text/javascript" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/yui_combo_002.php"></script><div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important" class=""></div><script type="text/javascript" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/javascript-static.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+document.body.className += ' jsenabled';
+//]]>
+</script>
+
+
+<script type="text/javascript" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/MathJax.js">
+</script>
+
+<header role="banner" class="navbar navbar-fixed-top navbar-inverse moodle-has-zindex">
+    <nav role="navigation" class="navbar-inner">
+        <div class="container-fluid">
+            <a class="small-logo-container" title="Página inicial" href="https://moodle.pb.utfpr.edu.br/"><img class="small-logo" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/negativo_logo_UTFPR_peq.jpg" alt="Logotipo do site"></a><a class="brand" title="Página inicial" href="https://moodle.pb.utfpr.edu.br/">Moodle-PB</a>            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></a>            <div class="usermenu"><div class="moodle-actionmenu nowrap-items" id="action-menu-0" data-enhance="moodle-core-actionmenu" data-enhanced="1">
+
+        <ul class="menubar" id="action-menu-0-menubar" role="menubar">
+
+            <!--
+
+            --><!--
+
+            --><li role="presentation"><a href="#" class=" toggle-display textmenu" id="action-menu-toggle-0" title="Menu do usuário" role="menuitem" aria-haspopup="true"><span class="userbutton"><span class="usertext mr-1">GABRIEL ROBERTO PENDIUK</span><span class="avatars"><span class="avatar current"><img src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/f2.jpg" class="userpicture" role="presentation" aria-hidden="true" width="35" height="35"></span></span></span><b class="caret"></b></a>
+</li>
+
+        </ul>
+
+
+        <ul class="menu  align-tr-br" id="action-menu-0-menu" data-rel="menu-content" aria-labelledby="action-menu-toggle-0" role="menu" data-align="tr-br" aria-hidden="true">
+            <li role="presentation">    <a href="https://moodle.pb.utfpr.edu.br/my/" class="icon menu-action" role="menuitem" data-title="mymoodle,admin" aria-labelledby="actionmenuaction-1"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/dashboard.svg"><span class="menu-action-text" id="actionmenuaction-1">Painel</span></a>
+
+
+
+
+
+</li><li role="presentation">
+<span class="filler">&nbsp;</span>
+
+
+
+</li><li role="presentation">    <a href="https://moodle.pb.utfpr.edu.br/user/profile.php?id=1838" class="icon menu-action" role="menuitem" data-title="profile,moodle" aria-labelledby="actionmenuaction-2"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/user.svg"><span class="menu-action-text" id="actionmenuaction-2">Perfil</span></a>
+
+
+
+
+
+</li><li role="presentation">    <a href="https://moodle.pb.utfpr.edu.br/grade/report/overview/index.php" class="icon menu-action" role="menuitem" data-title="grades,grades" aria-labelledby="actionmenuaction-3"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/grades.svg"><span class="menu-action-text" id="actionmenuaction-3">Notas</span></a>
+
+
+
+
+
+</li><li role="presentation">    <a href="https://moodle.pb.utfpr.edu.br/message/index.php" class="icon menu-action" role="menuitem" data-title="messages,message" aria-labelledby="actionmenuaction-4"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/message.svg"><span class="menu-action-text" id="actionmenuaction-4">Mensagens</span></a>
+
+
+
+
+
+</li><li role="presentation">    <a href="https://moodle.pb.utfpr.edu.br/user/preferences.php" class="icon menu-action" role="menuitem" data-title="preferences,moodle" aria-labelledby="actionmenuaction-5"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/preferences.svg"><span class="menu-action-text" id="actionmenuaction-5">Preferências</span></a>
+
+
+
+
+
+</li><li role="presentation">
+<span class="filler">&nbsp;</span>
+
+
+
+</li><li role="presentation">    <a href="https://moodle.pb.utfpr.edu.br/login/logout.php?sesskey=vQKlqcaEE4" class="icon menu-action" role="menuitem" data-title="logout,moodle" aria-labelledby="actionmenuaction-6"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/logout.svg"><span class="menu-action-text" id="actionmenuaction-6">Sair</span></a>
+
+
+
+
+
+</li>
+        </ul>
+</div></div>            <div class="pull-right popover-region collapsed">
+    <a id="message-drawer-toggle-5d29343e5830a5d29343e5651b12" class="nav-link d-inline-block popover-region-toggle position-relative" href="#">
+        <img class="icon " alt="Alternar menu de mensagens" title="Alternar menu de mensagens" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/message.svg">
+        <div class="count-container hidden" data-region="count-container">0</div>
+    </a>
+</div><div class="popover-region collapsed popover-region-notifications" id="nav-notification-popover-container" data-userid="1838" data-region="popover-region">
+    <div class="popover-region-toggle nav-link" data-region="popover-region-toggle" role="button" aria-controls="popover-region-container-5d29343e58a7a5d29343e5651b13" aria-haspopup="true" aria-label="Mostrar janela de notificações sem as novas notificações" tabindex="0">
+                <img class="icon " alt="Alternar menu de notificações" title="Alternar menu de notificações" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/notifications.svg">
+        <div class="count-container hidden" data-region="count-container">0</div>
+
+    </div>
+    <div id="popover-region-container-5d29343e58a7a5d29343e5651b13" class="popover-region-container" data-region="popover-region-container" aria-expanded="false" aria-hidden="true" aria-label="Janela de notificação" role="region">
+        <div class="popover-region-header-container">
+            <h3 class="popover-region-header-text" data-region="popover-region-header-text">Notificações</h3>
+            <div class="popover-region-header-actions" data-region="popover-region-header-actions">        <a class="mark-all-read-button" href="#" title="Marcar tudo como lido" data-action="mark-all-read" role="button">
+            <span class="normal-icon"><img class="icon " alt="Marcar tudo como lido" title="Marcar tudo como lido" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/markasread.svg"></span>
+            <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+        </a>
+        <a href="https://moodle.pb.utfpr.edu.br/message/notificationpreferences.php?userid=1838" title="Preferências de notificação">
+            <img class="icon " alt="Preferências de notificação" title="Preferências de notificação" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/settings.svg">
+        </a>
+</div>
+        </div>
+        <div class="popover-region-content-container" data-region="popover-region-content-container">
+            <div class="popover-region-content" data-region="popover-region-content">
+                        <div class="all-notifications" data-region="all-notifications" role="log" aria-busy="false" aria-atomic="false" aria-relevant="additions"></div>
+        <div class="empty-message" tabindex="0" data-region="empty-message">Você não tem nenhuma notificação</div>
+
+            </div>
+            <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+        </div>
+                <a class="see-all-link" href="https://moodle.pb.utfpr.edu.br/message/output/popup/notifications.php">
+                    <div class="popover-region-footer-container">
+                        <div class="popover-region-seeall-text">Mostrar todos</div>
+                    </div>
+                </a>
+    </div>
+</div>                        <div class="nav-collapse collapse">
+                <ul class="nav"><li class="dropdown"><a href="#cm_submenu_1" class="dropdown-toggle" data-toggle="dropdown" title=" UTFPR"> UTFPR<b class="caret"></b></a><ul class="dropdown-menu"><li><a title=" Portal do Aluno" href="http://www.utfpr.edu.br/alunos"> Portal do Aluno</a></li><li><a title=" Sistemas Coorporativos" href="http://sistemas.utfpr.edu.br/"> Sistemas Coorporativos</a></li></ul></li><li class="dropdown langmenu"><a href="" class="dropdown-toggle" data-toggle="dropdown" title="Idioma">Português - Brasil ‎(pt_br)‎<b class="caret"></b></a><ul class="dropdown-menu"><li><a title="English ‎(en)‎" href="https://moodle.pb.utfpr.edu.br/mod/quiz/review.php?attempt=29332&amp;cmid=39706&amp;lang=en">English ‎(en)‎</a></li><li><a title="Español - Argentina ‎(es_ar)‎" href="https://moodle.pb.utfpr.edu.br/mod/quiz/review.php?attempt=29332&amp;cmid=39706&amp;lang=es_ar">Español - Argentina ‎(es_ar)‎</a></li><li><a title="Español - Internacional ‎(es)‎" href="https://moodle.pb.utfpr.edu.br/mod/quiz/review.php?attempt=29332&amp;cmid=39706&amp;lang=es">Español - Internacional ‎(es)‎</a></li><li><a title="Português - Brasil ‎(pt_br)‎" href="https://moodle.pb.utfpr.edu.br/mod/quiz/review.php?attempt=29332&amp;cmid=39706&amp;lang=pt_br">Português - Brasil ‎(pt_br)‎</a></li></ul></li></ul>                <ul class="nav pull-right">
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div id="page" class="container-fluid">
+    <header id="page-header" class="clearfix"><div class="page-context-header"><div class="page-header-headings"><h1>Algoritmos e Estrutura de Dados II</h1></div></div><div class="clearfix" id="page-navbar"><div class="breadcrumb-nav"><span class="accesshide" id="navbar-label">Caminho da página</span><nav aria-labelledby="navbar-label"><ul class="breadcrumb"><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://moodle.pb.utfpr.edu.br/"><span itemprop="title">Página inicial</span></a></span> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><span tabindex="0">Meus cursos</span> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://moodle.pb.utfpr.edu.br/course/index.php?categoryid=2"><span itemprop="title">GRADUAÇÂO</span></a></span> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://moodle.pb.utfpr.edu.br/course/index.php?categoryid=26"><span itemprop="title">ENGENHARIA DE COMPUTAÇÃO</span></a></span> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" href="https://moodle.pb.utfpr.edu.br/course/index.php?categoryid=34"><span itemprop="title">3º Período</span></a></span> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" title="Algoritmos e Estrutura de Dados II" href="https://moodle.pb.utfpr.edu.br/course/view.php?id=159"><span itemprop="title">Algoritmos e Estrutura de Dados II</span></a></span> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><span tabindex="0">Aulas</span> <span class="divider"> <span class="accesshide "><span class="arrow_text">/</span>&nbsp;</span><span class="arrow sep">►</span> </span></li><li><span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a itemprop="url" title="Questionário" aria-current="page" href="https://moodle.pb.utfpr.edu.br/mod/quiz/view.php?id=39706"><span itemprop="title">[APS 07] - Exercícios - Árvores AVL</span></a></span></li></ul></nav></div><div class="breadcrumb-button"></div></div><div id="course-header"></div></header>    <div id="page-content" class="row-fluid">
+        <div id="region-main-box" class="span9 desktop-first-column">
+            <div class="row-fluid">
+                <section id="region-main" class="span8 pull-right">
+                    <span class="notifications" id="user-notifications"></span><div role="main"><span id="maincontent"></span><table class="generaltable generalbox quizreviewsummary"><tbody><tr><th class="cell" scope="row">Iniciado em</th><td class="cell">domingo, 30 jun 2019, 15:03</td></tr><tr><th class="cell" scope="row">Estado</th><td class="cell">Finalizada</td></tr><tr><th class="cell" scope="row">Concluída em</th><td class="cell">segunda, 1 jul 2019, 16:26</td></tr><tr><th class="cell" scope="row">Tempo empregado</th><td class="cell">1 dia 1 hora</td></tr><tr><th class="cell" scope="row">Avaliar</th><td class="cell">Ainda não avaliado</td></tr></tbody></table><form action="https://moodle.pb.utfpr.edu.br/mod/quiz/review.php?attempt=29332&amp;cmid=39706" method="post" class="questionflagsaveform" autocomplete="off" id="yui_3_17_2_1_1562981429799_98"><div><div id="q1" class="que essay manualgraded complete"><div class="info"><h3 class="no">Questão <span class="qno">1</span></h3><div class="state">Completo</div><div class="grade">Vale 1,00 ponto(s).</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1562981429799_24"><input type="hidden" name="q43236:1_:flagged" value="0"><input type="hidden" value="qaid=390979&amp;qubaid=43236&amp;qid=57267&amp;slot=1&amp;checksum=80f59c8feb110b7507ca6a4a67746e13&amp;sesskey=vQKlqcaEE4&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q43236:1_:flaggedcheckbox" name="q43236:1_:flagged" value="0"><input type="image" class="questionflagimage" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/unflagged.png" title="Marcar questão para referência futura" alt="Não marcada"><span class="questionflagtext" title="Marcar questão para referência futura">Marcar questão</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Texto da questão</h4><input type="hidden" name="q43236:1_:sequencecheck" value="3"><div class="qtext"><p>Para cada árvore binária abaixo, diga se é uma árvore AVL (justifique).<br></p><p>&nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;a)&nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b)&nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp;c)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;d)</p><p><img src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/exer1_arvores.png" alt="" role="presentation" class="atto_image_button_text-bottom" width="550" height="150"><br></p></div><div class="ablock"><div class="answer"><textarea readonly="readonly" class="qtype_essay_plain qtype_essay_response" rows="15" cols="60">a)não pois 22 está desbalanceado(-2)
+b)não pois 22 está desbalanceado(-2)
+c)É uma AVL pois está balanceada;</textarea></div><div class="attachments"></div></div></div></div></div><div id="q2" class="que essay manualgraded complete"><div class="info"><h3 class="no">Questão <span class="qno">2</span></h3><div class="state">Completo</div><div class="grade">Vale 2,00 ponto(s).</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1562981429799_33"><input type="hidden" name="q43236:2_:flagged" value="0"><input type="hidden" value="qaid=390980&amp;qubaid=43236&amp;qid=57268&amp;slot=2&amp;checksum=dfbf836fb8849c5e4d4a094bae86152f&amp;sesskey=vQKlqcaEE4&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q43236:2_:flaggedcheckbox" name="q43236:2_:flagged" value="0"><input type="image" class="questionflagimage" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/unflagged.png" title="Marcar questão para referência futura" alt="Não marcada"><span class="questionflagtext" title="Marcar questão para referência futura">Marcar questão</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Texto da questão</h4><input type="hidden" name="q43236:2_:sequencecheck" value="3"><div class="qtext"><p>Monte
+ a árvore AVL (passo-a-passo) para as seguintes inserções de chaves, 
+indicando a cada passo qual elemento foi inserido ou qual rotação foi 
+realizada:</p><div class="editor-indent" style="margin-left: 30px;"><p>&nbsp;a) 50, 30, 20, 70, 40, 35, 37, 38, 10, 32, 45, 42, 25, 47, 36.</p><p>&nbsp;b) 100, 80, 60, 40, 20, 70, 30, 50, 35, 45, 55, 75, 65, 73, 77</p></div><p>&nbsp; &nbsp; &nbsp;</p></div><div class="ablock"><div class="answer"><div class="qtype_essay_editorfilepicker qtype_essay_response readonly"><p><a href="https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/2/1058233/IMG_20190701_155159418_HDR.jpg">https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/2/1058233/IMG_20190701_155159418_HDR.jpg</a></p><p><a href="https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/2/1058233/IMG_20190701_155155069_HDR.jpg">https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/2/1058233/IMG_20190701_155155069_HDR.jpg</a></p><p>Fiz no papel e deixei as fotos da implementação<br></p></div></div><div class="attachments"></div></div></div></div></div><div id="q3" class="que essay manualgraded complete"><div class="info"><h3 class="no">Questão <span class="qno">3</span></h3><div class="state">Completo</div><div class="grade">Vale 1,00 ponto(s).</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1562981429799_42"><input type="hidden" name="q43236:3_:flagged" value="0"><input type="hidden" value="qaid=390981&amp;qubaid=43236&amp;qid=57269&amp;slot=3&amp;checksum=e1ebf9a44e0b80c76c950f64c0b90fdd&amp;sesskey=vQKlqcaEE4&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q43236:3_:flaggedcheckbox" name="q43236:3_:flagged" value="0"><input type="image" class="questionflagimage" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/unflagged.png" title="Marcar questão para referência futura" alt="Não marcada"><span class="questionflagtext" title="Marcar questão para referência futura">Marcar questão</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Texto da questão</h4><input type="hidden" name="q43236:3_:sequencecheck" value="3"><div class="qtext"><p>Dadas as seguintes chaves M, G, B, H, S, P, F, C como entrada (nesta ordem), desenhe a respectiva <b>árvore AVL</b>&nbsp;(balanceando-a quando for necessário).</p></div><div class="ablock"><div class="answer"><div class="qtype_essay_editorfilepicker qtype_essay_response readonly"><p><a href="https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/3/1058234/IMG_20190701_160232743_HDR.jpg">https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/3/1058234/IMG_20190701_160232743_HDR.jpg</a><br></p></div></div><div class="attachments"></div></div></div></div></div><div id="q4" class="que essay manualgraded complete"><div class="info"><h3 class="no">Questão <span class="qno">4</span></h3><div class="state">Completo</div><div class="grade">Vale 2,00 ponto(s).</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1562981429799_51"><input type="hidden" name="q43236:4_:flagged" value="0"><input type="hidden" value="qaid=390982&amp;qubaid=43236&amp;qid=57270&amp;slot=4&amp;checksum=030294e5051b06b7081f1e9ed943b75f&amp;sesskey=vQKlqcaEE4&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q43236:4_:flaggedcheckbox" name="q43236:4_:flagged" value="0"><input type="image" class="questionflagimage" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/unflagged.png" title="Marcar questão para referência futura" alt="Não marcada"><span class="questionflagtext" title="Marcar questão para referência futura">Marcar questão</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Texto da questão</h4><input type="hidden" name="q43236:4_:sequencecheck" value="3"><div class="qtext"><p>Monte a <b>árvore AVL</b>&nbsp;(passo-a-passo)
+ para as seguintes inserções de chaves 41, 38, 31, 12, 19, 8, 27, 49 
+(nesta ordem), indicando a cada passo qual elemento foi inserido e qual 
+rotação foi realizada.</p></div><div class="ablock"><div class="answer"><div class="qtype_essay_editorfilepicker qtype_essay_response readonly"><p><a href="https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/4/1058235/IMG_20190701_160830447_HDR.jpg">https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/4/1058235/IMG_20190701_160830447_HDR.jpg</a><br></p></div></div><div class="attachments"></div></div></div></div></div><div id="q5" class="que essay manualgraded complete"><div class="info"><h3 class="no">Questão <span class="qno">5</span></h3><div class="state">Completo</div><div class="grade">Vale 2,00 ponto(s).</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1562981429799_60"><input type="hidden" name="q43236:5_:flagged" value="0"><input type="hidden" value="qaid=390983&amp;qubaid=43236&amp;qid=57271&amp;slot=5&amp;checksum=6126153edc2fda046b4b1b89da76ec7a&amp;sesskey=vQKlqcaEE4&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q43236:5_:flaggedcheckbox" name="q43236:5_:flagged" value="0"><input type="image" class="questionflagimage" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/unflagged.png" title="Marcar questão para referência futura" alt="Não marcada"><span class="questionflagtext" title="Marcar questão para referência futura">Marcar questão</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Texto da questão</h4><input type="hidden" name="q43236:5_:sequencecheck" value="3"><div class="qtext"><p>Monte a <b>árvore AVL</b>&nbsp;(passo-a-passo)
+ para as seguintes inserções de chaves: 10, 20, 30, 40, 35 (nesta 
+ordem), indicando a cada passo (1) qual elemento foi inserido, (2) o 
+grau de balanceamento de cada nó, e (3) qual rotação foi realizada, se 
+necessária.</p></div><div class="ablock"><div class="answer"><div class="qtype_essay_editorfilepicker qtype_essay_response readonly"><p><a href="https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/5/1058236/IMG_20190701_161225794_HDR.jpg">https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/5/1058236/IMG_20190701_161225794_HDR.jpg</a><br></p></div></div><div class="attachments"></div></div></div></div></div><div id="q6" class="que essay manualgraded complete"><div class="info"><h3 class="no">Questão <span class="qno">6</span></h3><div class="state">Completo</div><div class="grade">Vale 2,00 ponto(s).</div><div class="questionflag editable" aria-atomic="true" aria-relevant="text" aria-live="assertive" id="yui_3_17_2_1_1562981429799_69"><input type="hidden" name="q43236:6_:flagged" value="0"><input type="hidden" value="qaid=390984&amp;qubaid=43236&amp;qid=57272&amp;slot=6&amp;checksum=621ac827e7deac3a13ecc086194f8bbe&amp;sesskey=vQKlqcaEE4&amp;newstate=" class="questionflagpostdata">
+<input type="hidden" class="questionflagvalue" id="q43236:6_:flaggedcheckbox" name="q43236:6_:flagged" value="0"><input type="image" class="questionflagimage" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/unflagged.png" title="Marcar questão para referência futura" alt="Não marcada"><span class="questionflagtext" title="Marcar questão para referência futura">Marcar questão</span></div></div><div class="content"><div class="formulation clearfix"><h4 class="accesshide">Texto da questão</h4><input type="hidden" name="q43236:6_:sequencecheck" value="3"><div class="qtext"><p>Considere a árvore da figura abaixo.&nbsp;</p><p><img src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/exer2_arvores%25201.png" alt="" role="presentation" class="img-responsive atto_image_button_text-bottom" width="221" height="121"><br></p><p>Pede-se:<br></p><p>a) Calcule os fatores de balanceamento dos nós da árvore.</p><p>b)
+ Faça as inserções dos nós a seguir e para cada nó inserido redesenhe a 
+árvore e recalcule seus fatores de balanceamento. Faça o rebalanceamento
+ quando for necessário e diga qual deles foi efetuado: 9, 11, 3, 5, e 7.</p></div><div class="ablock"><div class="answer"><div class="qtype_essay_editorfilepicker qtype_essay_response readonly"><p>a)fatores:</p><p>[8]-&gt;-1</p><p>[4]-&gt;0</p><p>[2]-&gt;0</p><p>[6]-&gt;0</p><p>[10]-&gt;0</p><p><a href="https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/6/1058237/IMG_20190701_162516994_HDR.jpg">https://moodle.pb.utfpr.edu.br/pluginfile.php/61691/question/response_answer/43236/6/1058237/IMG_20190701_162516994_HDR.jpg</a><br></p></div></div><div class="attachments"></div></div></div></div></div><input type="hidden" name="sesskey" value="vQKlqcaEE4"><div class="submitbtns"></div></div></form><div class="submitbtns"><a class="mod_quiz-next-nav" href="https://moodle.pb.utfpr.edu.br/mod/quiz/view.php?id=39706">Terminar revisão</a></div></div><div class="m-t-2 m-b-1 activity-navigation">
+<div class="row-fluid rtl-compatible">
+    <div class="span4">        <div class="pull-left">
+                <a href="https://moodle.pb.utfpr.edu.br/mod/resource/view.php?id=39497&amp;forceview=1" id="prev-activity-link" class="btn btn-link" title="Lista-Exercicios-ArvoresAVL">◄ Lista-Exercicios-ArvoresAVL</a>
+
+        </div>
+</div>
+    <div class="span4">        <div class="mdl-align">
+            <div class="urlselect">
+    <form method="post" action="https://moodle.pb.utfpr.edu.br/course/jumpto.php" class="form-inline" id="url_select_f5d29343e5651b16">
+        <input type="hidden" name="sesskey" value="vQKlqcaEE4">
+            <label for="jump-to-activity" class="sr-only">
+                Seguir para...
+            </label>
+        <select id="jump-to-activity" class="custom-select urlselect" name="jump">
+                    <option value="" selected="selected">Seguir para...</option>
+                    <option value="/mod/forum/view.php?id=17886&amp;forceview=1">Avisos</option>
+                    <option value="/mod/resource/view.php?id=23720&amp;forceview=1">AE23CP-Plano de Ensino</option>
+                    <option value="/mod/resource/view.php?id=55445&amp;forceview=1">Horarios-Profa-Luciene-2019-01</option>
+                    <option value="/mod/resource/view.php?id=52848&amp;forceview=1">Calendario Academico 2019</option>
+                    <option value="/mod/resource/view.php?id=53485&amp;forceview=1">Aula01-Aula-Inaugural-AE23CP</option>
+                    <option value="/mod/resource/view.php?id=41239&amp;forceview=1">Lista-Exercicio-Revisao-LinguagemC-AED1</option>
+                    <option value="/mod/url/view.php?id=36629&amp;forceview=1">Projeto de Algoritmos (em Linguagem C) - Prof. Paulo Feofiloff</option>
+                    <option value="/mod/resource/view.php?id=41655&amp;forceview=1">Aula02-ComplexidadeDeAlgoritmos-Parte1</option>
+                    <option value="/mod/resource/view.php?id=36701&amp;forceview=1">Lista-Exercicios-Metodos-De-OrdenacaoEDesempenho</option>
+                    <option value="/mod/resource/view.php?id=42079&amp;forceview=1">Aula03-ComplexidadeDeAlgoritmos-Parte2</option>
+                    <option value="/mod/quiz/view.php?id=37053&amp;forceview=1">[APS 01] - Exercícios - Complexidade de algoritmos</option>
+                    <option value="/mod/resource/view.php?id=42478&amp;forceview=1">Aula04-ProjetoDeAlgoritmos-MetodoGuloso</option>
+                    <option value="/mod/resource/view.php?id=37410&amp;forceview=1">Lista-Exercicio-Metodo-Guloso</option>
+                    <option value="/mod/resource/view.php?id=42766&amp;forceview=1">Aula05-ProjetoDeAlgoritmos-DivisaoConquista-ProgramacaoDinamica</option>
+                    <option value="/mod/resource/view.php?id=37700&amp;forceview=1">Lista-Exercicio-DivisaoConquista</option>
+                    <option value="/mod/resource/view.php?id=43107&amp;forceview=1">Aula06-Grafos-NocoesBasicas-Representacao</option>
+                    <option value="/mod/quiz/view.php?id=43108&amp;forceview=1">[APS 02] - Grafos - Noções Básicas</option>
+                    <option value="/mod/resource/view.php?id=56004&amp;forceview=1">Trabalho01-Grafos-AE23CP-2019-01</option>
+                    <option value="/mod/resource/view.php?id=44273&amp;forceview=1">Aula07-Grafos-Buscas-Largura</option>
+                    <option value="/mod/quiz/view.php?id=38486&amp;forceview=1">[APS 03] - Exercício Busca em Largura</option>
+                    <option value="/mod/resource/view.php?id=45027&amp;forceview=1">Aula08-Grafos-Buscas-Profundidade</option>
+                    <option value="/mod/quiz/view.php?id=38686&amp;forceview=1">[APS 04] - Exercício - Busca em Profundidade</option>
+                    <option value="/mod/resource/view.php?id=45247&amp;forceview=1">Aula09-Grafos-ArvoreGeradoraMinima</option>
+                    <option value="/mod/quiz/view.php?id=38837&amp;forceview=1">[APS 05] - Exercício - Árvore Geradora Mínima</option>
+                    <option value="/mod/resource/view.php?id=45538&amp;forceview=1">Aula10-Grafos-CaminhosMinimos</option>
+                    <option value="/mod/quiz/view.php?id=38989&amp;forceview=1">[APS 06] - Exercício - Árvore Caminhos Mínimos</option>
+                    <option value="/mod/resource/view.php?id=57279&amp;forceview=1">TrabalhoFinal-Grafos2019-01</option>
+                    <option value="/mod/resource/view.php?id=46028&amp;forceview=1">Aula11-Arvores-NocoesBasicas</option>
+                    <option value="/mod/resource/view.php?id=39284&amp;forceview=1">Lista-exercicio-Grafos-Arvores</option>
+                    <option value="/mod/resource/view.php?id=46053&amp;forceview=1">Aula12-ArvoresAVL</option>
+                    <option value="/mod/resource/view.php?id=39497&amp;forceview=1">Lista-Exercicios-ArvoresAVL</option>
+                    <option value="/mod/resource/view.php?id=51526&amp;forceview=1">Aula13-ArvoresB</option>
+                    <option value="/mod/resource/view.php?id=46651&amp;forceview=1">Aula14-ArvoresRedBlack</option>
+                    <option value="/mod/quiz/view.php?id=46652&amp;forceview=1">[APS 08] - Exercícios - Árvores Rubro-Negras</option>
+                    <option value="/mod/resource/view.php?id=56005&amp;forceview=1">Trabalho01-Grafos-AE23CP-2019-01</option>
+                    <option value="/mod/assign/view.php?id=37931&amp;forceview=1">Trabalho #01  </option>
+                    <option value="/mod/resource/view.php?id=57724&amp;forceview=1">TrabalhoFinal-Grafos2019-01</option>
+                    <option value="/mod/assign/view.php?id=38993&amp;forceview=1">Trabalho #Final  </option>
+                    <option value="/mod/resource/view.php?id=53975&amp;forceview=1">Apostila - Introdução à Linguagem C - UNICAMP</option>
+                    <option value="/mod/resource/view.php?id=54002&amp;forceview=1">Ponteiros</option>
+                    <option value="/mod/resource/view.php?id=58558&amp;forceview=1">Valgrind ComoUsar</option>
+                    <option value="/mod/url/view.php?id=32648&amp;forceview=1">Listas encadeadas (ligadas) - Prof. Paulo Feofiloff (DCC-IME-USP)</option>
+                    <option value="/mod/url/view.php?id=48666&amp;forceview=1">Usando Valgrind para detecção de vazamentos e outros problemas com a memória</option>
+                    <option value="/mod/resource/view.php?id=7902&amp;forceview=1">Vetor e Matriz como parâmetro de função</option>
+                    <option value="/mod/url/view.php?id=6484&amp;forceview=1">Visualizacao de Algoritmos</option>
+                    <option value="/mod/url/view.php?id=6483&amp;forceview=1">Portal com Aplicações para Visualização de vários algoritmos</option>
+                    <option value="/mod/url/view.php?id=6486&amp;forceview=1">Data and Algorithms in C</option>
+        </select>
+            <noscript>
+                <input type="submit" class="btn btn-secondary" value="Vai">
+            </noscript>
+    </form>
+</div>
+
+        </div>
+</div>
+    <div class="span4">        <div class="pull-right">
+                <a href="https://moodle.pb.utfpr.edu.br/mod/resource/view.php?id=51526&amp;forceview=1" id="next-activity-link" class="btn btn-link" title="Aula13-ArvoresB">Aula13-ArvoresB ►</a>
+
+        </div>
+</div>
+</div>
+</div>                </section>
+                <aside id="block-region-side-pre" class="span4 desktop-first-column block-region" data-blockregion="side-pre" data-droptarget="1"><a class="skip skip-block" id="fsb-1" href="#sb-1">Pular Navegação do questionário</a><div class="block block_fake" id="mod_quiz_navblock" role="navigation" aria-labelledby="mod_quiz_navblock_title" data-block="_fake"><div class="header"><div class="title"><div class="block_action"></div><h2><span id="mod_quiz_navblock_title">Navegação do questionário</span></h2></div></div><div class="content"><div id="user-picture" class="clearfix"><a href="https://moodle.pb.utfpr.edu.br/user/view.php?id=1838&amp;course=159"><img src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/f2.jpg" class="userpicture" alt="Imagem de GABRIEL ROBERTO PENDIUK" title="Imagem de GABRIEL ROBERTO PENDIUK" width="35" height="35"></a>GABRIEL ROBERTO PENDIUK</div><div class="qn_buttons clearfix allquestionsononepage"><a class="qnbutton requiresgrading free btn btn-secondary thispage" id="quiznavbutton1" title="Requer avaliação" data-quiz-page="0" href="#"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Questão </span>1<span class="accesshide"> Esta página <span class="flagstate"></span></span></a><a class="qnbutton requiresgrading free btn btn-secondary thispage" id="quiznavbutton2" title="Requer avaliação" data-quiz-page="0" href="#q2"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Questão </span>2<span class="accesshide"> Esta página <span class="flagstate"></span></span></a><a class="qnbutton requiresgrading free btn btn-secondary thispage" id="quiznavbutton3" title="Requer avaliação" data-quiz-page="0" href="#q3"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Questão </span>3<span class="accesshide"> Esta página <span class="flagstate"></span></span></a><a class="qnbutton requiresgrading free btn btn-secondary thispage" id="quiznavbutton4" title="Requer avaliação" data-quiz-page="0" href="#q4"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Questão </span>4<span class="accesshide"> Esta página <span class="flagstate"></span></span></a><a class="qnbutton requiresgrading free btn btn-secondary thispage" id="quiznavbutton5" title="Requer avaliação" data-quiz-page="0" href="#q5"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Questão </span>5<span class="accesshide"> Esta página <span class="flagstate"></span></span></a><a class="qnbutton requiresgrading free btn btn-secondary thispage" id="quiznavbutton6" title="Requer avaliação" data-quiz-page="0" href="#q6"><span class="thispageholder"></span><span class="trafficlight"></span><span class="accesshide">Questão </span>6<span class="accesshide"> Esta página <span class="flagstate"></span></span></a></div><div class="othernav"><a class="mod_quiz-next-nav" href="https://moodle.pb.utfpr.edu.br/mod/quiz/view.php?id=39706">Terminar revisão</a></div></div></div><span class="skip-block-to" id="sb-1"></span></aside>            </div>
+        </div>
+        <aside id="block-region-side-post" class="span3 pull-right block-region" data-blockregion="side-post" data-droptarget="1"></aside>    </div>
+    <div id="message-drawer-5d29343e5dfad5d29343e5651b17" class="message-drawer bg-light hidden" aria-expanded="false" aria-hidden="true" data-region="message-drawer" role="region">
+    <div class="drawer-top p-2 border-bottom bg-secondary text-right">
+        <a id="message-drawer-close-5d29343e5dfad5d29343e5651b17" class="" href="#">
+            <img class="icon " alt="Alternar menu de mensagens" title="Alternar menu de mensagens" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/window_close.svg">
+        </a>
+    </div>
+    <div class="header-container position-relative" data-region="header-container">
+        <div class="hidden border-bottom px-2 py-3" aria-hidden="true" data-region="view-contacts">
+            <div class="d-flex align-items-center">
+                <div class="align-self-stretch">
+                    <a class="h-100 d-flex align-items-center mr-2" href="#" data-route-back="">
+                        <span class="dir-rtl-hide"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed_rtl.svg"></span>
+                        <span class="dir-ltr-hide"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed.svg"></span>                    </a>
+                </div>
+                <div>
+                    Contatos
+                </div>
+                <div class="ml-auto">
+                    <a href="#" data-route="view-search">
+                        <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/search.svg">
+                    </a>
+                </div>
+            </div>
+        </div>        
+        <div class="hidden bg-white position-relative border-bottom px-2 py-2" aria-hidden="true" data-region="view-conversation">
+            <div class="hidden" data-region="header-content"></div>
+            <div class="hidden" data-region="header-edit-mode">
+                
+                <div class="d-flex p-2 align-items-center">
+                    Mensagens selecionadas:
+                    <span class="ml-1" data-region="message-selected-court">1</span>
+                    <button type="button" class="ml-auto close" aria-label="" data-action="cancel-edit-mode">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+            </div>
+            <div data-region="header-placeholder">
+                <div class="d-flex">
+                    <div class="align-self-stretch">
+                        <a class="h-100 mr-2 d-flex align-items-center" href="#" data-route-back="">
+                            <span class="dir-rtl-hide"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed_rtl.svg"></span>
+                            <span class="dir-ltr-hide"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed.svg"></span>                        </a>
+                    </div>
+                    <div class="ml-2 rounded-circle bg-pulse-grey align-self-center" style="height: 38px; width: 38px">
+                    </div>
+                    <div class="ml-2 " style="flex: 1">
+                        <div class="mt-1 bg-pulse-grey w-75" style="height: 16px;">
+                        </div>
+                    </div>
+                    <div class="ml-2 bg-pulse-grey align-self-center" style="height: 16px; width: 20px">
+                    </div>
+                </div>
+            </div>
+            <div class="hidden position-absolute" data-region="confirm-dialogue-container" style="top: 0; bottom: -1px; right: 0; left: 0; background: rgba(0,0,0,0.3);"></div>
+        </div>        <div class="border-bottom px-2 py-3" aria-hidden="false" data-region="view-overview">
+            <div class="d-flex align-items-center">
+                <div class="input-prepend d-flex flex-grow m-0">
+                    <span class="add-on bg-white pr-0">
+                        <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/search.svg">
+                    </span>
+                    <input type="text" class="form-control border-left-0 searchinput" placeholder="Pesquisar" aria-label="Pesquisar" data-region="view-overview-search-input">
+                </div>
+                <div class="ml-2">
+                    <a href="#" data-route="view-settings" data-route-param="1838">
+                        <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/edit.svg">
+                    </a>
+                </div>
+            </div>
+            <div class="text-right mt-3">
+                <a href="#" data-route="view-contacts">
+                    <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/user.svg">
+                    Contatos
+                    <span class="badge bg-primary ml-2 hidden" data-region="contact-request-count">
+                        0
+                    </span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="hidden border-bottom px-2 py-3 view-search" aria-hidden="true" data-region="view-search">
+            <div class="d-flex align-items-center">
+                <a class="mr-2 align-self-stretch d-flex align-items-center" href="#" data-route-back="" data-action="cancel-search">
+                    <span class="dir-rtl-hide"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed_rtl.svg"></span>
+                    <span class="dir-ltr-hide"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed.svg"></span>                </a>
+                <div class="input-append m-0 d-flex flex-grow">
+                    <input type="text" class="form-control border-right-0 searchinput" placeholder="Pesquisar" aria-label="Pesquisar" data-region="search-input">
+                    <button class="btn m-0" type="button" data-action="search">
+                        <span data-region="search-icon-container">
+                            <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/search.svg">
+                        </span>
+                        <span class="hidden" data-region="loading-icon-container">
+                            <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>        
+        <div class="hidden border-bottom px-2 py-3" aria-hidden="true" data-region="view-settings">
+            <div class="d-flex align-items-center">
+                <div class="align-self-stretch">
+                    <a class="h-100 d-flex mr-2 align-items-center" href="#" data-route-back="">
+                        <span class="dir-rtl-hide"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed_rtl.svg"></span>
+                        <span class="dir-ltr-hide"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed.svg"></span>                    </a>
+                </div>
+                <div>
+                    Configurações
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body-container position-relative" data-region="body-container">
+        
+        <div class="hidden" data-region="view-contact" aria-hidden="true">
+            <div class="p-2 pt-3" data-region="content-container"></div>
+        </div>        <div class="hidden h-100" aria-hidden="true" data-region="view-contacts" data-user-id="1838">
+            <div class="d-flex flex-column h-100">
+                <div class="p-3 border-bottom">
+                    <ul class="nav nav-pills d-flex m-0" role="tablist">
+                        <li class="nav-item w-50 align-self-stretch text-center active">
+                            <a id="contacts-tab-5d29343e5dfad5d29343e5651b17" class="nav-link" href="#contacts-tab-panel-5d29343e5dfad5d29343e5651b17" data-toggle="tab" data-action="show-contacts-section" role="tab" aria-controls="contacts-tab-panel-5d29343e5dfad5d29343e5651b17" aria-selected="true">
+                                Contatos
+                            </a>
+                        </li>
+                        <li class="nav-item w-50 text-center">
+                            <a id="requests-tab-5d29343e5dfad5d29343e5651b17" class="nav-link" href="#requests-tab-panel-5d29343e5dfad5d29343e5651b17" data-toggle="tab" data-action="show-requests-section" role="tab" aria-controls="requests-tab-panel-5d29343e5dfad5d29343e5651b17" aria-selected="false">
+                                Solicitações
+                                <span class="badge bg-primary ml-2 hidden" data-region="contact-request-count">
+                                    0
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content d-flex flex-column h-100">
+                            <div class="tab-pane fade in active h-100" style="overflow-y: auto" aria-live="polite" data-region="lazy-load-list" data-user-id="1838" id="contacts-tab-panel-5d29343e5dfad5d29343e5651b17" data-section="contacts" role="tabpanel" aria-labelledby="contacts-tab-5d29343e5dfad5d29343e5651b17">
+            <div class="onepix">
+            </div>
+            
+            <div class="hidden text-center p-2" data-region="empty-message-container">
+                Sem contatos
+            </div>
+            <div class="hidden list-group" data-region="content-container">
+                
+            </div>
+            <div class="list-group" data-region="placeholder-container">
+                
+            </div>
+            <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container">
+                <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+            </div>
+        </div>
+        
+                            <div class="tab-pane fade h-100" style="overflow-y: auto" aria-live="polite" data-region="lazy-load-list" data-user-id="1838" id="requests-tab-panel-5d29343e5dfad5d29343e5651b17" data-section="requests" role="tabpanel" aria-labelledby="requests-tab-5d29343e5dfad5d29343e5651b17">
+            <div class="onepix">
+            </div>
+            
+            <div class="hidden text-center p-2" data-region="empty-message-container">
+                Sem solicitações de contatos
+            </div>
+            <div class="hidden list-group" data-region="content-container">
+                
+            </div>
+            <div class="list-group" data-region="placeholder-container">
+                
+            </div>
+            <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container">
+                <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+            </div>
+        </div>
+                </div>
+            </div>
+        </div>        
+        <div class="view-conversation hidden h-100" aria-hidden="true" data-region="view-conversation" data-user-id="1838" data-midnight="1562900400" style="overflow-y: auto; overflow-x: hidden">
+            <div class="position-relative h-100" data-region="content-container" style="overflow-y: auto; overflow-x: hidden">
+                <div class="p-3 text-center hidden" data-region="contact-request-sent-message-container">
+                    <p class="m-0">Solicitação de contato enviado</p>
+                    <p class="font-italic font-weight-light" data-region="text"></p>
+                </div>
+                <div class="content-message-container hidden h-100 px-2 pb-2 pt-0" data-region="content-message-container" role="log" style="overflow-y: auto; overflow-x: hidden">
+                    <div class="hidden text-center p-3" data-region="more-messages-loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</div>
+                </div>
+                <div class="p-4 w-100 h-100 hidden position-absolute" data-region="confirm-dialogue-container" style="top: 0; background: rgba(0,0,0,0.3);">
+                    
+                    <div class="p-3 bg-white" data-region="confirm-dialogue" role="alert">
+                        <h3 class="h6 hidden" data-region="dialogue-header"></h3>
+                        <p class="text-muted" data-region="dialogue-text"></p>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-block">
+                            <span data-region="dialogue-button-text">Bloco</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-unblock">
+                            <span data-region="dialogue-button-text">Desbloquear</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-remove-contact">
+                            <span data-region="dialogue-button-text">Remover</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-add-contact">
+                            <span data-region="dialogue-button-text">Adicionar</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-delete-selected-messages">
+                            <span data-region="dialogue-button-text">Excluir</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-delete-conversation">
+                            <span data-region="dialogue-button-text">Excluir</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="request-add-contact">
+                            <span data-region="dialogue-button-text">Enviar solicitação de contato</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-primary btn-block hidden" data-action="accept-contact-request">
+                            <span data-region="dialogue-button-text">Aceitar e adicionar aos contatos</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-block hidden" data-action="decline-contact-request">
+                            <span data-region="dialogue-button-text">Recusar</span>
+                            <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-block" data-action="cancel-confirm">Cancelar</button>
+                    </div>
+                </div>
+                <div class="px-2 pb-2 pt-0" data-region="content-placeholder">
+                    <div class="h-100 d-flex flex-column">
+                        <div class="px-2 pb-2 pt-0 bg-light h-100" style="overflow-y: auto">
+                            <div class="mt-4">
+                                <div class="mb-4">
+                                    <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                            </div>                            <div class="mt-4">
+                                <div class="mb-4">
+                                    <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                            </div>                            <div class="mt-4">
+                                <div class="mb-4">
+                                    <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                            </div>                            <div class="mt-4">
+                                <div class="mb-4">
+                                    <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                            </div>                            <div class="mt-4">
+                                <div class="mb-4">
+                                    <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                                <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="mr-2">
+                                            <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                        </div>
+                                        <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                        <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                    </div>
+                                    <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                    <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                </div>
+                            </div>                        </div>
+                    </div>                </div>
+            </div>
+        </div>
+        
+        <div class="hidden" aria-hidden="true" data-region="view-group-info">
+            <div class="pt-3 h-100 d-flex flex-column" data-region="group-info-content-container" style="overflow-y: auto"></div>
+        </div>        <div class="h-100 view-overview-body" aria-hidden="false" data-region="view-overview" data-user-id="1838">
+            <div id="message-drawer-view-overview-container" class="d-flex flex-column h-100" style="overflow-y: auto">
+                    
+                    <div class="accordion-group section border-0 " data-region="view-overview-favourites">
+                        <div id="view-overview-favourites-toggle" class="accordion-heading" data-region="toggle">
+                            <button class="btn btn-link w-100 text-left p-2 m-0 d-flex align-items-center overview-section-toggle collapsed" data-toggle="collapse" data-parent="#message-drawer-view-overview-container" data-target="#view-overview-favourites-target" aria-expanded="false" aria-controls="view-overview-favourites-target">
+                                <span class="collapsed-icon-container">
+                                    <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed.svg">
+                                </span>
+                                <span class="expanded-icon-container">
+                                    <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/expanded.svg">
+                                </span>
+                                <strong>Favoritos</strong>
+                                <small class="hidden ml-1" data-region="section-total-count-container">
+                                    (<span data-region="section-total-count"></span>)
+                                </small>
+                                <span class="hidden ml-2" data-region="loading-icon-container">
+                                    <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+                                </span>
+                                <span class="hidden badge badge-pill badge-primary ml-auto bg-primary" data-region="section-unread-count">
+                                    
+                                </span>
+                            </button>
+                        </div>
+                                            <div class=" accordion-body collapse border-bottom " style="overflow-y: auto" aria-live="polite" data-region="lazy-load-list" data-user-id="1838" id="view-overview-favourites-target" aria-labelledby="view-overview-favourites-toggle" data-parent="#message-drawer-view-overview-container">
+                        <div class="onepix">
+                        </div>
+                        
+                        <div class="hidden text-center p-2" data-region="empty-message-container">
+                                    <p class="text-muted mt-2">Nenhuma conversa favoritada</p>
+
+                        </div>
+                        <div class="hidden list-group" data-region="content-container">
+                            
+                        </div>
+                        <div class="list-group" data-region="placeholder-container">
+                                    <div class="text-center py-2"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</div>
+
+                        </div>
+                        <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container">
+                            <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="accordion-group section border-0 " data-region="view-overview-group-messages">
+                        <div id="view-overview-group-messages-toggle" class="accordion-heading" data-region="toggle">
+                            <button class="btn btn-link w-100 text-left p-2 m-0 d-flex align-items-center overview-section-toggle collapsed" data-toggle="collapse" data-parent="#message-drawer-view-overview-container" data-target="#view-overview-group-messages-target" aria-expanded="false" aria-controls="view-overview-group-messages-target">
+                                <span class="collapsed-icon-container">
+                                    <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed.svg">
+                                </span>
+                                <span class="expanded-icon-container">
+                                    <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/expanded.svg">
+                                </span>
+                                <strong>Grupo</strong>
+                                <small class="hidden ml-1" data-region="section-total-count-container">
+                                    (<span data-region="section-total-count"></span>)
+                                </small>
+                                <span class="hidden ml-2" data-region="loading-icon-container">
+                                    <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+                                </span>
+                                <span class="hidden badge badge-pill badge-primary ml-auto bg-primary" data-region="section-unread-count">
+                                    
+                                </span>
+                            </button>
+                        </div>
+                                            <div class=" accordion-body collapse border-bottom " style="overflow-y: auto" aria-live="polite" data-region="lazy-load-list" data-user-id="1838" id="view-overview-group-messages-target" aria-labelledby="view-overview-group-messages-toggle" data-parent="#message-drawer-view-overview-container">
+                        <div class="onepix">
+                        </div>
+                        
+                        <div class="hidden text-center p-2" data-region="empty-message-container">
+                                    <p class="text-muted mt-2">Nenhuma conversa em grupo</p>
+
+                        </div>
+                        <div class="hidden list-group" data-region="content-container">
+                            
+                        </div>
+                        <div class="list-group" data-region="placeholder-container">
+                                    <div class="text-center py-2"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</div>
+
+                        </div>
+                        <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container">
+                            <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <div class="accordion-group section border-0 " data-region="view-overview-messages">
+                        <div id="view-overview-messages-toggle" class="accordion-heading" data-region="toggle">
+                            <button class="btn btn-link w-100 text-left p-2 m-0 d-flex align-items-center overview-section-toggle collapsed" data-toggle="collapse" data-parent="#message-drawer-view-overview-container" data-target="#view-overview-messages-target" aria-expanded="false" aria-controls="view-overview-messages-target">
+                                <span class="collapsed-icon-container">
+                                    <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/collapsed.svg">
+                                </span>
+                                <span class="expanded-icon-container">
+                                    <img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/expanded.svg">
+                                </span>
+                                <strong>Privado</strong>
+                                <small class="hidden ml-1" data-region="section-total-count-container">
+                                    (<span data-region="section-total-count"></span>)
+                                </small>
+                                <span class="hidden ml-2" data-region="loading-icon-container">
+                                    <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+                                </span>
+                                <span class="hidden badge badge-pill badge-primary ml-auto bg-primary" data-region="section-unread-count">
+                                    
+                                </span>
+                            </button>
+                        </div>
+                                            <div class=" accordion-body collapse border-bottom " style="overflow-y: auto" aria-live="polite" data-region="lazy-load-list" data-user-id="1838" id="view-overview-messages-target" aria-labelledby="view-overview-messages-toggle" data-parent="#message-drawer-view-overview-container">
+                        <div class="onepix">
+                        </div>
+                        
+                        <div class="hidden text-center p-2" data-region="empty-message-container">
+                                    <p class="text-muted mt-2">Nenhuma conversa privada</p>
+
+                        </div>
+                        <div class="hidden list-group" data-region="content-container">
+                            
+                        </div>
+                        <div class="list-group" data-region="placeholder-container">
+                                    <div class="text-center py-2"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</div>
+
+                        </div>
+                        <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container">
+                            <span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+        
+        <div data-region="view-search" aria-hidden="true" class="h-100 hidden" data-user-id="1838" data-users-offset="0" data-messages-offset="0" style="overflow-y: auto">
+            <div class="hidden" data-region="search-results-container" style="overflow-y: auto">
+                
+                <div class="d-flex flex-column">
+                    <div class="mb-3 bg-white" data-region="all-contacts-container">
+                        <div data-region="contacts-container" class="pt-2">
+                            <h4 class="h6 px-2">Contatos</h4>
+                            <div class="list-group" data-region="list"></div>
+                        </div>
+                        <div data-region="non-contacts-container" class="pt-2 border-top">
+                            <h4 class="h6 px-2">Não contatos</h4>
+                            <div class="list-group" data-region="list"></div>
+                        </div>
+                        <div class="text-right">
+                            <button class="btn btn-link text-primary" data-action="load-more-users">
+                                <span data-region="button-text">Carregue mais</span>
+                                <span data-region="loading-icon-container" class="hidden"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-white" data-region="messages-container">
+                        <h4 class="h6 px-2 pt-2">Mensagens</h4>
+                        <div class="list-group" data-region="list"></div>
+                        <div class="text-right">
+                            <button class="btn btn-link text-primary" data-action="load-more-messages">
+                                <span data-region="button-text">Carregue mais</span>
+                                <span data-region="loading-icon-container" class="hidden"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="hidden p-3 text-center" data-region="no-results-container">Nenhum resultado</p>
+                </div>            </div>
+            <div class="hidden" data-region="loading-placeholder">
+                <div class="text-center pt-3 icon-size-4"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</div>
+            </div>
+            <div class="p-3 text-center" data-region="empty-message-container">
+                <p>Pesquisar pessoas e mensagens</p>
+            </div>
+        </div>        
+        <div class="h-100 hidden bg-white" aria-hidden="true" data-region="view-settings">
+            <div class="hidden" data-region="content-container">
+                
+                <div data-region="settings" class="p-3">
+                    <h3 class="h6 font-weight-bold">Privacidade</h3>
+                    <p>Você pode restringir quem pode enviar uma mensagem para você</p>
+                    <div data-preference="blocknoncontacts" class="mb-3">
+                            <div class="custom-control custom-radio mb-2">
+                                <input type="radio" name="message_blocknoncontacts" class="custom-control-input" id="block-noncontacts-5d29343e5dfad5d29343e5651b17-1" value="1">
+                                <label class="custom-control-label ml-2" for="block-noncontacts-5d29343e5dfad5d29343e5651b17-1">
+                                    Apenas meus contatos
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio mb-2">
+                                <input type="radio" name="message_blocknoncontacts" class="custom-control-input" id="block-noncontacts-5d29343e5dfad5d29343e5651b17-0" value="0">
+                                <label class="custom-control-label ml-2" for="block-noncontacts-5d29343e5dfad5d29343e5651b17-0">
+                                    Meus contatos e qualquer pessoa em meus cursos
+                                </label>
+                            </div>
+                    </div>
+                
+                    <div class="hidden" data-region="notification-preference-container">
+                        <h3 class="mb-2 mt-4 h6 font-weight-bold">Preferências de notificação</h3>
+                    </div>
+                
+                    <h3 class="mb-2 mt-4 h6 font-weight-bold">Geral</h3>
+                    <div data-preference="entertosend">
+                        <span class="switch">
+                            <input type="checkbox" id="enter-to-send-5d29343e5dfad5d29343e5651b17">
+                            <label for="enter-to-send-5d29343e5dfad5d29343e5651b17">
+                                Use 'enter' para enviar
+                            </label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div data-region="placeholder-container">
+                
+                <div class="d-flex flex-column p-3">
+                    <div class="w-25 bg-pulse-grey h6" style="height: 18px"></div>
+                    <div class="w-75 bg-pulse-grey mb-4" style="height: 18px"></div>
+                    <div class="mb-3">
+                        <div class="w-100 d-flex mb-3">
+                            <div class="bg-pulse-grey rounded-circle" style="width: 18px; height: 18px"></div>
+                            <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                        </div>
+                        <div class="w-100 d-flex mb-3">
+                            <div class="bg-pulse-grey rounded-circle" style="width: 18px; height: 18px"></div>
+                            <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                        </div>
+                        <div class="w-100 d-flex mb-3">
+                            <div class="bg-pulse-grey rounded-circle" style="width: 18px; height: 18px"></div>
+                            <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                        </div>
+                    </div>
+                    <div class="w-50 bg-pulse-grey h6 mb-3 mt-2" style="height: 18px"></div>
+                    <div class="mb-4">
+                        <div class="w-100 d-flex mb-2 align-items-center">
+                            <div class="bg-pulse-grey w-25" style="width: 18px; height: 27px"></div>
+                            <div class="bg-pulse-grey w-25 ml-2" style="height: 18px"></div>
+                        </div>
+                        <div class="w-100 d-flex mb-2 align-items-center">
+                            <div class="bg-pulse-grey w-25" style="width: 18px; height: 27px"></div>
+                            <div class="bg-pulse-grey w-25 ml-2" style="height: 18px"></div>
+                        </div>
+                    </div>
+                    <div class="w-25 bg-pulse-grey h6 mb-3 mt-2" style="height: 18px"></div>
+                    <div class="mb-3">
+                        <div class="w-100 d-flex mb-2 align-items-center">
+                            <div class="bg-pulse-grey w-25" style="width: 18px; height: 27px"></div>
+                            <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                        </div>
+                    </div>
+                </div>            </div>
+        </div>    </div>
+    <div class="footer-container position-relative" data-region="footer-container">
+        
+        <div class="hidden border-top bg-white position-relative" aria-hidden="true" data-region="view-conversation" data-enter-to-send="0">
+            <div class="hidden p-2" data-region="content-messages-footer-container">
+                
+                <div class="d-flex mt-1">
+                    <textarea dir="auto" data-region="send-message-txt" class="form-control bg-light m-0 flex-grow" rows="3" data-auto-rows="" data-min-rows="3" data-max-rows="5" role="textbox" aria-label="Escrever uma mensagem..." placeholder="Escrever uma mensagem..." style="resize: none"></textarea>
+                    <button class="btn btn-link btn-icon icon-size-3 ml-1 mt-auto" aria-label="Enviar mensagem" data-action="send-message">
+                        <span data-region="send-icon-container"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/sendmessage.svg"></span>
+                        <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden p-2" data-region="content-messages-footer-edit-mode-container">
+                
+                <div class="d-flex p-3">
+                    <button class="btn btn-link btn-icon my-1 icon-size-4 ml-auto" data-action="delete-selected-messages" data-toggle="tooltip" data-placement="top" title="Apagar mensagens selecionadas">
+                        <span data-region="icon-container"><img class="icon " alt="" aria-hidden="true" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/trash.svg"></span>
+                        <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                        <span class="sr-only">Apagar mensagens selecionadas</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden bg-secondary p-3" data-region="content-messages-footer-require-contact-container">
+                
+                <div class="p-3 bg-white">
+                    <p data-region="title"></p>
+                    <p class="text-muted" data-region="text"></p>
+                    <button type="button" class="btn btn-primary btn-block" data-action="request-add-contact">
+                        <span data-region="dialogue-button-text">Enviar solicitação de contato</span>
+                        <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden bg-secondary p-3" data-region="content-messages-footer-require-unblock-container">
+                
+                <div class="p-3 bg-white">
+                    <p class="text-muted" data-region="text">Você bloqueou este usuário.</p>
+                    <button type="button" class="btn btn-primary btn-block" data-action="request-unblock">
+                        <span data-region="dialogue-button-text">Desbloquear usuário</span>
+                        <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><img class="icon " alt="Carregando" title="Carregando" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/loading.gif"></span>
+</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden bg-secondary p-3" data-region="content-messages-footer-unable-to-message">
+                
+                <div class="p-3 bg-white">
+                    <p class="text-muted" data-region="text">Você não consegue enviar mensagens para esse usuário</p>
+                </div>
+            </div>
+            <div class="p-2" data-region="placeholder-container">
+                <div class="d-flex">
+                    <div class="bg-pulse-grey w-100" style="height: 80px"></div>
+                    <div class="mx-2 mb-2 align-self-end bg-pulse-grey" style="height: 20px; width: 20px"></div>
+                </div>            </div>
+            <div class="hidden position-absolute" data-region="confirm-dialogue-container" style="top: -1px; bottom: 0; right: 0; left: 0; background: rgba(0,0,0,0.3);"></div>
+        </div>    </div>
+</div>
+    <footer id="page-footer">
+        <div id="course-footer"></div>
+        <p class="helplink"></p>
+        <div class="logininfo">Você acessou como <a href="https://moodle.pb.utfpr.edu.br/user/profile.php?id=1838" title="Ver perfil">GABRIEL ROBERTO PENDIUK</a> (<a href="https://moodle.pb.utfpr.edu.br/login/logout.php?sesskey=vQKlqcaEE4">Sair</a>)</div><div class="homelink"><a href="https://moodle.pb.utfpr.edu.br/course/view.php?id=159">AE23CP</a></div><div class="tool_dataprivacy"><a href="https://moodle.pb.utfpr.edu.br/admin/tool/dataprivacy/summary.php">Resumo de retenção de dados</a></div><a href="https://download.moodle.org/mobile?version=2018120303.03&amp;lang=pt_br&amp;iosappid=633359593&amp;androidappid=com.moodle.moodlemobile">Obter o aplicativo para dispositivos móveis</a>    </footer>
+
+    <script type="text/javascript">
+//<![CDATA[
+var require = {
+    baseUrl : 'https://moodle.pb.utfpr.edu.br/lib/requirejs.php/1552921938/',
+    // We only support AMD modules with an explicit define() statement.
+    enforceDefine: true,
+    skipDataMain: true,
+    waitSeconds : 0,
+
+    paths: {
+        jquery: 'https://moodle.pb.utfpr.edu.br/lib/javascript.php/1552921938/lib/jquery/jquery-3.2.1.min',
+        jqueryui: 'https://moodle.pb.utfpr.edu.br/lib/javascript.php/1552921938/lib/jquery/ui-1.12.1/jquery-ui.min',
+        jqueryprivate: 'https://moodle.pb.utfpr.edu.br/lib/javascript.php/1552921938/lib/requirejs/jquery-private'
+    },
+
+    // Custom jquery config map.
+    map: {
+      // '*' means all modules will get 'jqueryprivate'
+      // for their 'jquery' dependency.
+      '*': { jquery: 'jqueryprivate' },
+      // Stub module for 'process'. This is a workaround for a bug in MathJax (see MDL-60458).
+      '*': { process: 'core/first' },
+
+      // 'jquery-private' wants the real jQuery module
+      // though. If this line was not here, there would
+      // be an unresolvable cyclic dependency.
+      jqueryprivate: { jquery: 'jquery' }
+    }
+};
+
+//]]>
+</script>
+<script type="text/javascript" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/require.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+require(['core/first'], function() {
+;
+require(["media_videojs/loader"], function(loader) {
+    loader.setUp(function(videojs) {
+        videojs.options.flash.swf = "https://moodle.pb.utfpr.edu.br/media/player/videojs/videojs/video-js.swf";
+videojs.addLanguage("pt-BR",{
+ "Play": "Tocar",
+ "Pause": "Pausar",
+ "Current Time": "Tempo",
+ "Duration Time": "Duração",
+ "Remaining Time": "Tempo Restante",
+ "Stream Type": "Tipo de Stream",
+ "LIVE": "AO VIVO",
+ "Loaded": "Carregado",
+ "Progress": "Progresso",
+ "Fullscreen": "Tela Cheia",
+ "Non-Fullscreen": "Tela Normal",
+ "Mute": "Mudo",
+ "Unmute": "Habilitar Som",
+ "Playback Rate": "Velocidade",
+ "Subtitles": "Legendas",
+ "subtitles off": "Sem Legendas",
+ "Captions": "Anotações",
+ "captions off": "Sem Anotações",
+ "Chapters": "Capítulos",
+ "You aborted the media playback": "Você parou a execução do vídeo.",
+ "A network error caused the media download to fail part-way.": "Um erro na rede fez o vídeo parar parcialmente.",
+ "The media could not be loaded, either because the server or network failed or because the format is not supported.": "O vídeo não pode ser carregado, ou porque houve um problema com sua rede ou pelo formato do vídeo não ser suportado.",
+ "The media playback was aborted due to a corruption problem or because the media used features your browser did not support.": "A execução foi interrompida por um problema com o vídeo ou por seu navegador não dar suporte ao seu formato.",
+ "No compatible source was found for this media.": "Não foi encontrada fonte de vídeo compatível."
+});
+
+    });
+});;
+
+require(['core/yui'], function(Y) {
+    M.util.init_skiplink(Y);
+});
+;
+
+require(['core/yui'], function(Y) {
+    Y.use('moodle-core-actionmenu', function() {
+        M.core.actionmenu.init();
+    });
+});
+;
+
+require(
+[
+    'jquery',
+    'core_message/message_popover'
+],
+function(
+    $,
+    Popover
+) {
+    var toggle = $('#message-drawer-toggle-5d29343e5830a5d29343e5651b12');
+    Popover.init(toggle);
+});
+;
+
+require(['jquery', 'message_popup/notification_popover_controller'], function($, controller) {
+    var container = $('#nav-notification-popover-container');
+    var controller = new controller(container);
+    controller.registerEventListeners();
+    controller.registerListNavigationEventListeners();
+});
+;
+
+require(['jquery'], function($) {
+    $('#single_select5d29343e5651b15').change(function() {
+        var ignore = $(this).find(':selected').attr('data-ignore');
+        if (typeof ignore === typeof undefined) {
+            $('#single_select_f5d29343e5651b14').submit();
+        }
+    });
+});
+;
+
+        require(['jquery'], function($) {
+            $('#jump-to-activity').change(function() {
+                if (!$(this).val()) {
+                    return false;
+                }
+                $('#url_select_f5d29343e5651b16').submit();
+            });
+        });
+    ;
+
+require(
+[
+    'jquery',
+    'core_message/message_drawer',
+    'core_message/message_popover'
+],
+function(
+    $,
+    MessageDrawer,
+    Popover
+) {
+
+    var root = $('#message-drawer-5d29343e5dfad5d29343e5651b17');
+    MessageDrawer.init(root);
+
+    var toggle = $('#message-drawer-close-5d29343e5dfad5d29343e5651b17');
+    Popover.init(toggle);
+});
+;
+require(["core/notification"], function(amd) { amd.init(61691, []); });;
+require(["core/log"], function(amd) { amd.setConfig({"level":"warn"}); });;
+require(["core/page_global"], function(amd) { amd.init(); });
+});
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+M.yui.add_module({"core_question_engine":{"name":"core_question_engine","fullpath":"https:\/\/moodle.pb.utfpr.edu.br\/lib\/javascript.php\/1552921938\/question\/qengine.js","requires":["node","event"]},"mod_quiz":{"name":"mod_quiz","fullpath":"https:\/\/moodle.pb.utfpr.edu.br\/lib\/javascript.php\/1552921938\/mod\/quiz\/module.js","requires":["base","dom","event-delegate","event-key","core_question_engine","moodle-core-formchangechecker"]}});
+
+//]]>
+</script>
+<script type="text/javascript" src="[APS%2007]%20-%20Exerc%C3%ADcios%20-%20%C3%81rvores%20AVL_arquivos/footer"></script>
+<script type="text/javascript">
+//<![CDATA[
+M.str = {"moodle":{"lastmodified":"\u00daltima atualiza\u00e7\u00e3o","name":"Nome","error":"Erro","info":"Informa\u00e7\u00e3o","yes":"Sim","no":"N\u00e3o","cancel":"Cancelar","changesmadereallygoaway":"Voc\u00ea fez altera\u00e7\u00f5es. Est\u00e1 certo de que quer sair e abandonar suas altera\u00e7\u00f5es?","morehelp":"Mais ajuda","loadinghelp":"Carregando...","confirm":"Confirmar","areyousure":"Voc\u00ea tem certeza?","closebuttontitle":"Fechar","unknownerror":"Erro desconhecido"},"repository":{"type":"Tipo","size":"Tamanho","invalidjson":"palavra JSON inv\u00e1lida","nofilesattached":"Nenhum arquivo anexado","filepicker":"Seletor de arquivos","logout":"Sair","nofilesavailable":"Nenhum arquivo dispon\u00edvel","norepositoriesavailable":"Desculpe, nenhum dos seus reposit\u00f3rios atuais pode retornar arquivos no formato solicitado.","fileexistsdialogheader":"Arquivo existe","fileexistsdialog_editor":"Um arquivo com este nome j\u00e1 foi anexado ao texto que voc\u00ea est\u00e1 editando","fileexistsdialog_filemanager":"Um arquivo com este nome j\u00e1 foi anexado","renameto":"Renomear para \"{$a}\"","referencesexist":"H\u00e1 {$a} arquivos pseud\u00f4nimos\/atalhos que usam este arquivo como fonte","select":"Selecione"},"admin":{"confirmdeletecomments":"Voc\u00ea est\u00e1 prestes a excluir coment\u00e1rios, tem certeza?","confirmation":"Confirma\u00e7\u00e3o"},"block":{"addtodock":"Mover isto para a dock","undockitem":"Remover este item do dock","dockblock":"Colocar o bloco {$a} em doc","undockblock":"Retirar bloco {$a} do dock","undockall":"Remover todos do dock","hidedockpanel":"Esconder o painel dock","hidepanel":"Esconder o painel"},"langconfig":{"thisdirectionvertical":"btt"},"question":{"flagged":"Marcada"},"quiz":{"functiondisabledbysecuremode":"Esta funcionalidade est\u00e1 desativada neste momento","startattempt":"Iniciar tentativa","timesup":"Acabou o tempo de dura\u00e7\u00e3o!"}};
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+(function() {Y.use("moodle-core-dock-loader",function() {M.core.dock.loader.initLoader();
+});
+ M.util.js_pending('random5d29343e5651b1'); Y.use('core_question_flags', function(Y) { M.core_question_flags.init(Y, "https:\/\/moodle.pb.utfpr.edu.br\/question\/toggleflag.php", [{"src":"https:\/\/moodle.pb.utfpr.edu.br\/theme\/image.php\/more\/core\/1552921938\/i\/unflagged","title":"Marcar quest\u00e3o para refer\u00eancia futura","alt":"N\u00e3o marcada"},{"src":"https:\/\/moodle.pb.utfpr.edu.br\/theme\/image.php\/more\/core\/1552921938\/i\/flagged","title":"Remover marca\u00e7\u00e3o","alt":"Marcada"}], ["Marcar quest\u00e3o","Remover r\u00f3tulo"]);  M.util.js_complete('random5d29343e5651b1'); });
+ M.util.js_pending('random5d29343e5651b2'); Y.use('mod_quiz', function(Y) { M.mod_quiz.nav.init(Y);  M.util.js_complete('random5d29343e5651b2'); });
+M.util.help_popups.setup(Y);
+Y.use("moodle-core-popuphelp",function() {M.core.init_popuphelp();
+});
+ M.util.js_pending('random5d29343e5651b18'); Y.use('mod_quiz', function(Y) { M.mod_quiz.init_review_form(Y);  M.util.js_complete('random5d29343e5651b18'); });
+ M.util.js_pending('random5d29343e5651b19'); Y.on('domready', function() { M.util.js_complete("init");  M.util.js_complete('random5d29343e5651b19'); });
+})();
+//]]>
+</script>
+
+</div>
+
+
+</body></html>
